@@ -1,16 +1,38 @@
-# React + Vite
+# Credit Desk — Credit Analysis Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📖 Overview
 
-Currently, two official plugins are available:
+Credit Desk is a front-end credit analysis panel built with React 18, simulating an internal tool for credit analysts to evaluate and manage loan applications.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 💼 Business Applicability
 
-## React Compiler
+The system centralises the credit application pipeline. With this dashboard, analysts can:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Monitor pipeline KPIs — total requested, total approved, applications under review, and average portfolio score.
+- Filter applications by status (Under Review, Approved, Rejected, Pending Documents).
+- Access a detailed credit file per applicant — income, repayment term, credit score, and automated risk recommendation — with a single click.
 
-## Expanding the ESLint configuration
+## 🏗️ Key Architectural Decisions
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Lifting State Up:** All shared state lives in `App.jsx`. Child components receive data via props and communicate back through callbacks — mirroring the Controller pattern from back-end design.
+- **Props as DTOs:** Each component receives only the data it needs, keeping components decoupled and independently maintainable.
+- **Data Layer Isolation (`mockdata.js`):** Mock data is fully decoupled from the UI. In production, this module would be replaced by an API service without touching any component.
+
+## 🚀 Tech Stack
+
+- **React 18** (Hooks: `useState`, conditional rendering)
+- **Vite** — Build tool and dev server
+- **Vanilla CSS + CSS Grid** — No UI framework
+
+## 🌐 Live Demo
+
+[View live project →](https://credit-desk-xi.vercel.app/)
+
+## 🛠️ Running Locally
+
+```bash
+npm install
+npm run dev
+```
+
+Open `http://localhost:5173` in your browser.
